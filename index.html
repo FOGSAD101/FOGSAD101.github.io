@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premchai Saelee — Portfolio</title>
+<meta name="description" content="เปรมชัย แซ่หลี — ดูแลเว็บไซต์ WordPress สร้างเว็บแอป และระบบอัตโนมัติบน Google Sheets / Apps Script · Websites, web apps and automation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fogsad101.github.io/">
+<meta property="og:title" content="เปรมชัย แซ่หลี · Premchai Saelee — Portfolio">
+<meta property="og:description" content="เว็บไซต์ WordPress · เว็บแอป · ระบบอัตโนมัติบน Google Sheets / Apps Script ที่ทีมใช้งานจริง">
+<meta property="og:image" content="https://fogsad101.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2318181B'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Thai:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FAFAFA;color:#09090B;font-family:'IBM Plex Sans','IBM Plex Sans Thai','Leelawadee UI',Thonburi,system-ui,sans-serif}
+a{color:#2563EB}a:hover{color:#1D4ED8}
+h1,h2,h3{text-wrap:balance}
+p,li,dd{text-wrap:pretty}
+a,button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid #2563EB;outline-offset:3px;border-radius:8px}
+.lift{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.lift:hover{transform:scale(1.02);box-shadow:0 18px 40px -20px rgba(9,9,11,.28);border-color:#A1A1AA}
+.todo{display:inline-block;background:#FEF3C7;color:#78350F;border:1px dashed #B45309;border-radius:4px;padding:0 8px;font-size:.82em;font-weight:500;line-height:1.7}
+@media (max-width:860px){.navlinks{display:none !important}.bento{grid-template-columns:minmax(0,1fr) !important}.bento > *{grid-column:1 / -1 !important;grid-row:auto !important}}
+@media (prefers-reduced-motion:reduce){.lift,.lift:hover{transition:none;transform:none}}
+</style>
+</helmet>
+<div lang="{{lang}}" style="min-height: 100vh; background: #FAFAFA; color: #09090B; font-size: 17px; line-height: 1.7">
+
+<!-- NAV -->
+<header style="position: sticky; top: 0; z-index: 10; background: rgba(250,250,250,0.92); border-bottom: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 20px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #09090B">
+<span style="width: 34px; height: 34px; display: grid; place-items: center; background: #18181B; color: #FFFFFF; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 15px">P</span>
+<span style="font-weight: 600; font-size: 16px">{{t.shortName}}</span>
+</a>
+<nav class="navlinks" aria-label="Main" style="display: flex; align-items: center; gap: 28px; font-size: 15px">
+<a href="#featured" style="color: #3F3F46; text-decoration: none">{{t.navFeatured}}</a>
+<a href="#work" style="color: #3F3F46; text-decoration: none">{{t.navWork}}</a>
+<a href="#about" style="color: #3F3F46; text-decoration: none">{{t.navAbout}}</a>
+<a href="#experience" style="color: #3F3F46; text-decoration: none">{{t.navExp}}</a>
+<a href="#contact" style="color: #3F3F46; text-decoration: none">{{t.navContact}}</a>
+</nav>
+<div role="group" aria-label="Language / ภาษา" style="display: flex; padding: 3px; gap: 2px; border: 1px solid #E4E4E7; border-radius: 999px; background: #FFFFFF">
+<sc-if value="{{isTh}}" hint-placeholder-val="{{ true }}">
+<button type="button" aria-pressed="true" onClick="{{setTh}}" style="min-width: 52px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: #18181B; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">ไทย</button>
+<button type="button" aria-pressed="false" onClick="{{setEn}}" style="min-width: 52px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: #3F3F46; font: inherit; font-size: 14px; font-weight: 600">EN</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{ false }}">
+<button type="button" aria-pressed="false" onClick="{{setTh}}" style="min-width: 52px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: #3F3F46; font: inherit; font-size: 14px; font-weight: 600">ไทย</button>
+<button type="button" aria-pressed="true" onClick="{{setEn}}" style="min-width: 52px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: #18181B; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">EN</button>
+</sc-if>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="top" style="max-width: 1240px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(32px, 4vw, 48px); display: flex; flex-direction: column">
+<div style="max-width: 880px; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: #475569; letter-spacing: 0.02em">{{t.heroEyebrow}}</p>
+<h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: clamp(2.6rem, 1.6rem + 3.6vw, 4.6rem); line-height: 1.12; font-weight: 700; letter-spacing: -0.02em">{{t.name}}</span>
+<span style="font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); line-height: 1.4; font-weight: 500; color: #475569">{{t.altName}}</span>
+</h1>
+<p style="margin: 0; font-size: clamp(1.1rem, 1rem + 0.45vw, 1.35rem); max-width: 34em; color: #27272A">{{t.heroLead}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#featured" style="display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 12px; background: #18181B; color: #FFFFFF; font-weight: 600; text-decoration: none">{{t.btnWork}}
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"></path></svg></a>
+<a href="#contact" style="display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; border-radius: 12px; border: 1px solid #D4D4D8; background: #FFFFFF; color: #09090B; font-weight: 600; text-decoration: none">{{t.btnContact}}</a>
+</div>
+</div>
+</section>
+
+<!-- FEATURED: inter.mut.ac.th -->
+<section id="featured" style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) clamp(56px, 7vw, 96px); display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; border-top: 1px solid #E4E4E7; padding-top: 28px">
+<h2 style="margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem); line-height: 1.3; font-weight: 700">{{t.featTitle}}</h2>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #475569">{{t.featKicker}}</span>
+</div>
+
+<div class="bento" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px">
+
+<!-- A: browser frame -->
+<div style="grid-column: span 8; grid-row: span 2; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #E4E4E7; background: #F4F4F5">
+<div style="display: flex; gap: 6px" aria-hidden="true"><span style="width: 10px; height: 10px; border-radius: 999px; background: #D4D4D8"></span><span style="width: 10px; height: 10px; border-radius: 999px; background: #D4D4D8"></span><span style="width: 10px; height: 10px; border-radius: 999px; background: #D4D4D8"></span></div>
+<div style="flex: 1; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px; padding: 4px 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #3F3F46; min-width: 0">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">inter.mut.ac.th</span>
+</div>
+</div>
+<div style="flex: 1; min-height: 0; background: #1F1A1B; display: flex">
+<img src="./assets/4bb571128e664303a7351c616128b605.jpg" alt="{{t.shotHomeAlt}}" style="display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: left top">
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-top: 1px solid #E4E4E7">
+<span style="font-size: 14px; color: #475569">{{t.homeLabel}}</span>
+<a href="https://inter.mut.ac.th/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-weight: 600; font-size: 15px; text-decoration: none">{{t.visit}}
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+</div>
+</div>
+
+<!-- B: role -->
+<div style="grid-column: span 4; background: #18181B; color: #FAFAFA; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A1A1AA">{{t.roleLabel}}</span>
+<h3 style="margin: 0; font-size: 1.25rem; line-height: 1.4; font-weight: 600">{{t.featRole}}</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #E4E4E7">
+<sc-for list="{{t.featDid}}" as="d" hint-placeholder-count="4">
+<li style="display: flex; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 5px"><path d="M20 6 9 17l-5-5"></path></svg><span>{{d}}</span></li>
+</sc-for>
+</ul>
+</div>
+
+<!-- C: stack -->
+<div style="grid-column: span 4; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475569">{{t.stackLabel}}</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 4px 10px">WordPress</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 4px 10px">Yoast SEO</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 4px 10px">HTML / CSS</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: #F4F4F5; border: 1px solid #E4E4E7; border-radius: 8px; padding: 4px 10px">MJML</span>
+</div>
+<p style="margin: 0; font-size: 14px; color: #475569">{{t.stackNote}}</p>
+</div>
+
+<!-- D: page tiles -->
+<sc-for list="{{pages}}" as="pg" hint-placeholder-count="4">
+<a href="{{pg.url}}" target="_blank" rel="noopener" class="lift" style="grid-column: span 3; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; overflow: hidden; text-decoration: none; color: #09090B">
+<div style="aspect-ratio: 4 / 3; background: #F4F4F5; border-bottom: 1px solid #E4E4E7; overflow: hidden">
+<img src="{{pg.img}}" alt="{{pg.alt}}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top">
+</div>
+<div style="flex: 1; padding: 14px 16px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px">
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-weight: 600; font-size: 15px; line-height: 1.45">{{pg.name}}</span>
+<span style="font-size: 14px; line-height: 1.55; color: #3F3F46">{{pg.note}}</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475569; overflow-wrap: anywhere">{{pg.path}}</span>
+</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<!-- OTHER WORK -->
+<section id="work" style="background: #FFFFFF; border-top: 1px solid #E4E4E7; border-bottom: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px); display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem); line-height: 1.3; font-weight: 700">{{t.workTitle}}</h2>
+<p style="margin: 0; color: #475569; font-size: 15px">{{t.workSub}}</p>
+</div>
+<div class="bento" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+<article style="grid-column: span {{p.span}}; background: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: #475569">{{p.num}}</span>
+<sc-if value="{{p.statusTodo}}" hint-placeholder-val="{{ false }}"><span class="todo">{{p.status}}</span></sc-if>
+<sc-if value="{{p.statusOk}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; font-weight: 600; color: {{p.statusColor}}; background: {{p.statusBg}}; border-radius: 999px; padding: 2px 10px">{{p.status}}</span></sc-if>
+</div>
+<h3 style="margin: 0; font-size: 1.2rem; line-height: 1.45; font-weight: 700">{{p.title}}</h3>
+<sc-if value="{{p.hasGallery}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 14px">
+<sc-for list="{{p.gallery}}" as="shot" hint-placeholder-count="3">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid #E4E4E7; border-radius: 12px; background: #F4F4F5"><img src="{{shot.img}}" alt="{{shot.alt}}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top"></div>
+<figcaption style="font-size: 14px; color: #3F3F46">{{shot.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{p.isInvoice}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 420px">
+<div style="aspect-ratio: 4 / 3; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px"><div style="height: 7px; background: #CBD5E1; border-radius: 2px"></div><div style="height: 6px; background: #EEF2F6; border-radius: 2px"></div><div style="height: 6px; background: #DBEAFE; border-radius: 2px"></div><div style="height: 6px; background: #EEF2F6; border-radius: 2px"></div><div style="height: 6px; background: #EEF2F6; border-radius: 2px"></div></div>
+<div style="aspect-ratio: 4 / 3; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; line-height: 1.2">INVOICE</span><div style="height: 5px; width: 70%; background: #EEF2F6; border-radius: 2px"></div><div style="height: 5px; width: 50%; background: #EEF2F6; border-radius: 2px"></div><div style="margin-top: auto; height: 7px; width: 40%; align-self: flex-end; background: #18181B; border-radius: 2px"></div></div>
+<div style="aspect-ratio: 4 / 3; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px"><div style="height: 6px; width: 50%; background: #CBD5E1; border-radius: 2px"></div><div style="height: 5px; width: 85%; background: #EEF2F6; border-radius: 2px"></div><div style="margin-top: auto; height: 12px; width: 60%; border: 1px solid #E4E4E7; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 7px; line-height: 10px; padding-left: 4px">.pdf</div></div>
+</div>
+<span style="font-size: 12px; color: #475569">{{t.mock}}</span>
+</sc-if>
+<dl style="margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="display: flex; flex-direction: column; gap: 2px"><dt style="font-weight: 600; color: #475569; font-size: 13px">{{t.lblProblem}}</dt><dd style="margin: 0"><sc-if value="{{p.hasProblem}}" hint-placeholder-val="{{ true }}">{{p.problem}}</sc-if><sc-if value="{{p.noProblem}}" hint-placeholder-val="{{ false }}"><span class="todo">{{t.todo}}</span></sc-if></dd></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><dt style="font-weight: 600; color: #475569; font-size: 13px">{{t.lblBuilt}}</dt><dd style="margin: 0">{{p.built}} <sc-if value="{{p.hasBuiltTodo}}" hint-placeholder-val="{{ false }}"><span class="todo">{{p.builtTodo}}</span></sc-if></dd></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><dt style="font-weight: 600; color: #475569; font-size: 13px">{{t.lblResult}}</dt><dd style="margin: 0; display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><sc-if value="{{p.hasResult}}" hint-placeholder-val="{{ false }}"><span>{{p.result}}</span></sc-if><sc-if value="{{p.hasResultTodo}}" hint-placeholder-val="{{ false }}"><span class="todo">{{p.resultTodo}}</span></sc-if></dd></div>
+</dl>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px">
+<sc-for list="{{p.tools}}" as="tool" hint-placeholder-count="3">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #3F3F46; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 6px; padding: 2px 8px">{{tool}}</span>
+</sc-for>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- ABOUT + SKILLS -->
+<section id="about" style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px); display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem); line-height: 1.3; font-weight: 700">{{t.aboutTitle}}</h2>
+<div class="bento" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px">
+<div style="grid-column: span 7; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; color: #27272A">{{t.aboutP1}}</p>
+<p style="margin: 0; color: #27272A">{{t.aboutP2}}</p>
+</div>
+<div style="grid-column: span 5; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div style="background: #18181B; color: #FAFAFA; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 600; line-height: 1.2">{{t.s1n}}</span><span style="font-size: 14px; color: #D4D4D8">{{t.s1l}}</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 600; line-height: 1.2">658</span><span style="font-size: 14px; color: #475569">{{t.s2l}}</span></div>
+<div style="grid-column: span 2; background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: 16px; padding: 22px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 600; line-height: 1.2; color: #1E3A8A">25 → 7</span><span style="font-size: 14px; color: #1E3A8A">{{t.s3l}}</span></div>
+</div>
+<sc-for list="{{skills}}" as="g" hint-placeholder-count="3">
+<div style="grid-column: span 4; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<h3 style="margin: 0; font-size: 1.05rem; font-weight: 600">{{g.name}}</h3>
+<sc-if value="{{g.learning}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; font-weight: 600; color: #78350F; background: #FEF3C7; border-radius: 999px; padding: 1px 10px">{{t.learning}}</span></sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{g.items}}" as="s" hint-placeholder-count="4">
+<span style="font-size: 14px; background: #F4F4F5; border-radius: 8px; padding: 4px 10px">{{s}}</span>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: #18181B; color: #FAFAFA">
+<div style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: clamp(28px, 5vw, 72px)">
+<h2 style="margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem); line-height: 1.3; font-weight: 700">{{t.expTitle}}</h2>
+<div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #3F3F46; padding-top: 22px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline">
+<h3 style="margin: 0; font-size: 1.25rem; font-weight: 600">{{t.expRole}}</h3>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #A1A1AA">{{t.expPeriod}}</span>
+</div>
+<p style="margin: 0; color: #D4D4D8">{{t.expOrg}}</p>
+<ul style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+<sc-for list="{{t.expBullets}}" as="b" hint-placeholder-count="5">
+<li style="padding: 10px 0; border-bottom: 1px solid #3F3F46; display: flex; gap: 12px"><span style="width: 6px; height: 6px; background: #93C5FD; border-radius: 1px; flex: none; margin-top: 12px"></span><span>{{b}}</span></li>
+</sc-for>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(28px, 5vw, 72px); align-items: start">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.2rem); line-height: 1.3; font-weight: 700">{{t.contactTitle}}</h2>
+<p style="margin: 0; color: #475569">{{t.contactText}}</p>
+</div>
+<div style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 16px; padding: 4px 22px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding: 16px 0; border-bottom: 1px solid #E4E4E7"><span style="font-weight: 600">LINE</span><span style="font-family: 'JetBrains Mono', monospace">@Premchai456</span></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding: 16px 0; border-bottom: 1px solid #E4E4E7"><span style="font-weight: 600">Email</span><a href="mailto:premchaisaelee@gmail.com" style="font-family: 'JetBrains Mono', monospace; display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere">premchaisaelee@gmail.com</a></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding: 16px 0"><span style="font-weight: 600">GitHub</span><a href="https://github.com/FOGSAD101" target="_blank" rel="noopener" style="font-family: 'JetBrains Mono', monospace; display: inline-flex; align-items: center; gap: 6px; min-height: 44px">github.com/FOGSAD101<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #475569">
+<span>© 2026 {{t.name}}</span>
+<span>Portfolio</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["th","en"],"default":"th"},"accent":{"editor":"color","default":"#2563EB","options":["#2563EB","#1D4ED8","#18181B","#0F766E"]},"$preview":{"width":1440,"height":6000}}'>
+var COPY = {
+  th: {
+    shortName: `เปรมชัย แซ่หลี`,
+    navFeatured: `เว็บไซต์ MUTIC`, navWork: `ระบบงาน`, navAbout: `เกี่ยวกับ`, navExp: `ประสบการณ์`, navContact: `ติดต่อ`,
+    heroEyebrow: `PORTFOLIO`,
+    name: `เปรมชัย แซ่หลี`,
+    altName: `Premchai Saelee · เปรม`,
+    heroLead: `ผมดูแลเว็บไซต์ WordPress ของ MUTIC สร้างเว็บแอปออกใบแจ้งหนี้ และระบบอัตโนมัติบน Google Sheets กับ Apps Script ที่ทีมใช้ในงานจริงทุกวัน`,
+    btnWork: `ดูผลงาน`, btnContact: `ติดต่อ`,
+    photo: `รูปโปรไฟล์\nเห็นหน้าชัด`,
+    featTitle: `เว็บไซต์ inter.mut.ac.th`,
+    featKicker: `ผลงานหลัก · WordPress`,
+    homeLabel: `หน้าแรก · นับถอยหลังรอบรับสมัคร 2 รอบ · สลับภาษา EN / 中文`,
+    visit: `เปิดเว็บไซต์จริง`,
+    shotHomeAlt: `ภาพหน้าจอหน้าแรกของ inter.mut.ac.th`,
+    roleLabel: `สิ่งที่ผมทำ`,
+    featRole: `ดูแลและพัฒนาเนื้อหาเว็บไซต์ของวิทยาลัย`,
+    featDid: [
+      `หน้าหลักสูตร (MBA, PhD) และส่วนทุนการศึกษา`,
+      `บทความข่าวและกิจกรรมแบบ HTML`,
+      `แม่แบบอีเมลแคมเปญด้วย MJML ให้แสดงผลดีบนมือถือ`,
+      `แก้ปัญหาเซิร์ฟเวอร์ WordPress: file lock, OPcache เต็ม และ ModSecurity ที่บล็อก WP File Manager`,
+      `เครื่องคำนวณค่าเล่าเรียน ตามสัญชาติ ระดับ หลักสูตร สกุลเงิน และทุน`,
+      `หน้ารับสมัครพร้อมนับถอยหลังวันปิดรับ และเส้นตายทุน Early Bird ที่คำนวณจากวันเปิดเทอม`,
+      `สลับภาษา EN / 中文`
+    ],
+    featTodo: `ต้องการ: ยืนยันขอบเขต · ทำหน้าไหนเองบ้าง`,
+    stackLabel: `เครื่องมือ`,
+    stackNote: `ทำงานผ่านหน้าแอดมิน WordPress โดยไม่มีสิทธิ์ SSH หรือ cPanel ปัญหาระดับเซิร์ฟเวอร์จึงต้องวิเคราะห์ให้ชัดก่อนส่งต่อทีม IT`,
+    workTitle: `ระบบที่ผมสร้างและทีมใช้งานจริง`,
+    workSub: `ภาพหน้าจอจากระบบจริงปิดชื่อและยอดเงินไว้ ภาพประกอบอื่นเป็นข้อมูลจำลอง`,
+    lblProblem: `ปัญหาเดิม`, lblBuilt: `สิ่งที่สร้าง`, lblResult: `ผลลัพธ์`,
+    todo: `ต้องการข้อมูล`,
+    mock: `ตาราง → PDF → อีเมล (ข้อมูลจำลอง)`,
+    aboutTitle: `ผมไม่ได้เริ่มจากการเป็นโปรแกรมเมอร์`,
+    aboutP1: `ผมทำงานด้านรับสมัครและงานปฏิบัติการที่ MUTIC วิทยาลัยนานาชาติ มหาวิทยาลัยเทคโนโลยีมหานคร มา 4 ปี งานประจำของผมคือออกใบแจ้งหนี้ ส่งจดหมายตอบรับ ส่งอีเมลถึงคนจำนวนมาก ดูแลข้อมูลนักศึกษา และดูแลเว็บไซต์`,
+    aboutP2: `งานพวกนี้ซ้ำทุกรอบ ผมเลยสร้างระบบให้มันทำเอง และทีมก็ใช้ระบบเหล่านั้นในงานจริง เพราะผมเป็นคนใช้เองทุกวัน ผมจึงออกแบบระบบจากมุมของคนใช้งาน ไม่ใช่จากมุมของคนเขียนโค้ด`,
+    aboutTodo: `ต้องการ: ยืนยันว่าตรงกับความจริง`,
+    s1n: `4 ปี`, s1l: `งานรับสมัครและงานปฏิบัติการ`,
+    s2l: `ใบแจ้งหนี้เก่า ย้ายเข้าระบบเดียว`,
+    s3l: `ชีตที่รวมเหลือในระบบใบแจ้งหนี้`,
+    learning: `กำลังเรียน`,
+    expTitle: `ประวัติการทำงาน`,
+    expRole: `Admission Support Officer`,
+    expPeriod: `2565 – ปัจจุบัน`,
+    expOrg: `MUTIC วิทยาลัยนานาชาติ มหาวิทยาลัยเทคโนโลยีมหานคร`,
+    expTodo: `ต้องการ: ปีที่เริ่มงาน · ประวัติการศึกษา (ถ้าจะใส่)`,
+    expBullets: [
+      `ดูแลเว็บไซต์ WordPress ของวิทยาลัย (inter.mut.ac.th)`,
+      `ออกใบแจ้งหนี้ให้นักศึกษาต่างชาติ`,
+      `ออกและส่งจดหมายตอบรับ (Offer letter)`,
+      `ทำแคมเปญอีเมลถึงผู้สมัครและนักศึกษา`,
+      `ดูแลข้อมูลนักศึกษา`,
+      `สร้างและดูแลระบบภายในให้ทีม ทั้งเว็บแอป (Next.js + Supabase) และระบบบน Google Apps Script กับ Google Sheets`
+    ],
+    contactTitle: `ติดต่อ`,
+    contactText: `อยากคุยเรื่องงาน หรือดูรายละเอียดผลงานเพิ่ม ติดต่อได้ทางช่องทางเหล่านี้`,
+    emailTodo: `ต้องการ: อีเมลส่วนตัว (ไม่ใช่อีเมลที่ทำงาน)`,
+    githubTodo: `ต้องการ: ลิงก์ GitHub`
+  },
+  en: {
+    shortName: `Premchai Saelee`,
+    navFeatured: `MUTIC website`, navWork: `Systems`, navAbout: `About`, navExp: `Experience`, navContact: `Contact`,
+    heroEyebrow: `PORTFOLIO`,
+    name: `Premchai Saelee`,
+    altName: `เปรมชัย แซ่หลี · Prem`,
+    heroLead: `I look after MUTIC’s WordPress website, built the web app we use for invoicing, and build automation with Google Sheets and Apps Script that my team uses every day.`,
+    btnWork: `See my work`, btnContact: `Get in touch`,
+    photo: `Profile photo\nface clearly visible`,
+    featTitle: `inter.mut.ac.th`,
+    featKicker: `Featured · WordPress`,
+    homeLabel: `Homepage · countdowns for two intakes · EN / 中文 switch`,
+    visit: `Visit the live site`,
+    shotHomeAlt: `Screenshot of the inter.mut.ac.th homepage`,
+    roleLabel: `What I do`,
+    featRole: `Maintaining and building content for the college website`,
+    featDid: [
+      `Program pages (MBA, PhD) and scholarship sections`,
+      `News and event articles in HTML`,
+      `Mobile-friendly campaign email templates in MJML`,
+      `Fixing WordPress server issues: file locks, OPcache saturation, and ModSecurity blocking WP File Manager`,
+      `A tuition calculator by nationality, level, program, currency and scholarship`,
+      `An admissions page with a closing countdown and early-bird scholarship deadlines worked out from the intake date`,
+      `An EN / 中文 language switch`
+    ],
+    featTodo: `TODO: confirm scope · which pages I built`,
+    stackLabel: `Stack`,
+    stackNote: `Work happens through the WordPress admin without SSH or cPanel access, so server-level problems have to be diagnosed clearly before they go to IT.`,
+    workTitle: `Systems I’ve built that my team uses`,
+    workSub: `Screenshots from live systems have names and amounts blurred; other visuals use mock data.`,
+    lblProblem: `Problem`, lblBuilt: `What I built`, lblResult: `Result`,
+    todo: `Needs info`,
+    mock: `Sheet → PDF → email (mock data)`,
+    aboutTitle: `I didn’t start out as a programmer`,
+    aboutP1: `I’ve worked in admissions and operations at MUTIC, Mahanakorn University of Technology International College, for four years. My day-to-day is invoices, offer letters, email campaigns, student records and the college website.`,
+    aboutP2: `That work repeats every intake, so I started building systems to do it, and the team now relies on them. Because I use them every day myself, I design from the user’s side, not the code’s.`,
+    aboutTodo: `TODO: confirm this is accurate`,
+    s1n: `4 yrs`, s1l: `in admissions and operations`,
+    s2l: `legacy invoices migrated into one system`,
+    s3l: `sheets consolidated in the invoice system`,
+    learning: `Learning`,
+    expTitle: `Experience`,
+    expRole: `Admission Support Officer`,
+    expPeriod: `2022 – Present`,
+    expOrg: `MUTIC, Mahanakorn University of Technology International College`,
+    expTodo: `TODO: start year · education (if included)`,
+    expBullets: [
+      `Maintaining the college’s WordPress website (inter.mut.ac.th)`,
+      `International student invoicing`,
+      `Preparing and sending offer letters`,
+      `Email campaigns to applicants and students`,
+      `Student records`,
+      `Building and maintaining the team’s internal tools: a Next.js + Supabase web app and Google Apps Script / Sheets automation`
+    ],
+    contactTitle: `Contact`,
+    contactText: `Want to talk, or see more of a project? Reach me through any of these.`,
+    emailTodo: `TODO: personal email (not work)`,
+    githubTodo: `TODO: GitHub link`
+  }
+};
+
+var IMG = {
+  mba: `./assets/5bd7ba1747a9581140fe69df79202b55.jpg`,
+  fees: `./assets/5e7faf1c77e51051312d9ef7914beea1.jpg`,
+  adm: `./assets/50c6dc288994358a21fb4f03d196368a.jpg`,
+  news: `./assets/6e5b6d8db8713787faa6e368370bf4a9.jpg`
+};
+var PAGES = {
+  th: [
+    { name: `ค่าเล่าเรียน`, note: `เครื่องคำนวณค่าใช้จ่าย เลือกสัญชาติ ระดับ หลักสูตร สกุลเงิน และทุน`, path: `/admissions/tuition-fees/`, url: `https://inter.mut.ac.th/admissions/tuition-fees/`, img: IMG.fees, alt: `ภาพหน้าจอหน้าคำนวณค่าเล่าเรียน` },
+    { name: `รับสมัคร`, note: `เลือกรอบรับสมัคร นับถอยหลังวันปิดรับ และเส้นตายทุน Early Bird`, path: `/admissions/`, url: `https://inter.mut.ac.th/admissions/`, img: IMG.adm, alt: `ภาพหน้าจอหน้ารับสมัคร` },
+    { name: `MBA AI in Business`, note: `หน้าหลักสูตร สรุป 3 แกนหลักของหลักสูตร`, path: `/programs/mba-ai-in-business/`, url: `https://inter.mut.ac.th/programs/mba-ai-in-business/`, img: IMG.mba, alt: `ภาพหน้าจอหน้าหลักสูตร MBA AI in Business` },
+    { name: `ข่าวและกิจกรรม`, note: `หน้ารวมข่าว พร้อมข่าวเด่นด้านบน`, path: `/news-events/`, url: `https://inter.mut.ac.th/news-events/`, img: IMG.news, alt: `ภาพหน้าจอหน้าข่าวและกิจกรรม` }
+  ],
+  en: [
+    { name: `Tuition fees`, note: `Cost calculator by nationality, level, program, currency and scholarship`, path: `/admissions/tuition-fees/`, url: `https://inter.mut.ac.th/admissions/tuition-fees/`, img: IMG.fees, alt: `Screenshot of the tuition calculator page` },
+    { name: `Admissions`, note: `Intake picker with a closing countdown and early-bird scholarship deadlines`, path: `/admissions/`, url: `https://inter.mut.ac.th/admissions/`, img: IMG.adm, alt: `Screenshot of the admissions page` },
+    { name: `MBA AI in Business`, note: `Program page built around three core pillars`, path: `/programs/mba-ai-in-business/`, url: `https://inter.mut.ac.th/programs/mba-ai-in-business/`, img: IMG.mba, alt: `Screenshot of the MBA AI in Business page` },
+    { name: `News & events`, note: `News hub with a featured story up top`, path: `/news-events/`, url: `https://inter.mut.ac.th/news-events/`, img: IMG.news, alt: `Screenshot of the news and events page` }
+  ]
+};
+
+var GALLERY = {
+  th: [
+    { img: `./assets/b45c05de103f6c2379de38f84de59cbd.jpg`, alt: `แดชบอร์ดการเงินของ MUTIC Invoice Studio (ปิดชื่อและยอดเงิน)`, cap: `แดชบอร์ดการเงินและอายุหนี้ค้างชำระ` },
+    { img: `./assets/07024bb7ce84e3345832c7b3e8349b8b.jpg`, alt: `หน้าสร้างใบแจ้งหนี้จากคำสั่ง พร้อมตัวอย่างใบแจ้งหนี้`, cap: `พิมพ์คำสั่ง → ตรวจข้อมูล → ดูตัวอย่างใบแจ้งหนี้` },
+    { img: `./assets/17a737b829c88d51a601aa256d7d8b51.jpg`, alt: `หน้าทะเบียนนักศึกษาและการรับชำระ (ปิดชื่อและยอดเงิน)`, cap: `ทะเบียนนักศึกษา รับชำระ และแนบหลักฐาน` }
+  ],
+  en: [
+    { img: `./assets/b45c05de103f6c2379de38f84de59cbd.jpg`, alt: `MUTIC Invoice Studio finance dashboard (names and amounts blurred)`, cap: `Finance dashboard and AR aging` },
+    { img: `./assets/07024bb7ce84e3345832c7b3e8349b8b.jpg`, alt: `Invoice creation from a command, with invoice preview`, cap: `Type a command → check the fields → preview the invoice` },
+    { img: `./assets/17a737b829c88d51a601aa256d7d8b51.jpg`, alt: `Student registry and payment recording (names and amounts blurred)`, cap: `Student registry, payments and proof uploads` }
+  ]
+};
+
+var PROJECTS = {
+  th: [
+    { span: 12, gallery: true, title: `MUTIC Invoice Studio — เว็บแอปออกและติดตามใบแจ้งหนี้`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `ต่อยอดระบบใบแจ้งหนี้จาก Google Sheets ขึ้นเป็นเว็บแอป ผมเป็นคนออกใบแจ้งหนี้ ส่วนทีมเข้าดูได้อย่างเดียว`,
+      built: `แดชบอร์ดการเงิน (ยอดเรียกเก็บ เก็บได้ คงค้าง เกินกำหนด) และอายุหนี้ค้างชำระแยกช่วงตั้งแต่ 1–30 ถึงเกิน 90 วัน · สร้างใบแจ้งหนี้จากคำสั่งประโยคเดียว ระบบกรอกฟอร์มให้ แล้วพิมพ์เป็น PDF หรือร่างอีเมลต่อได้ทันที · ทะเบียนนักศึกษา นำเข้า CSV บันทึกการรับชำระ แนบสลิป และยืนยันยอดเทียบกับ statement · เข้าระบบได้เฉพาะบัญชี @mut.ac.th`,
+      result: `ใช้ออกและติดตามใบแจ้งหนี้ของวิทยาลัยอยู่ในปัจจุบัน`,
+      tools: [`Next.js`, `Supabase`, `Vercel`, `NextAuth`] },
+    { span: 6, invoice: true, title: `ระบบออกใบแจ้งหนี้บน Google Sheets`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `ข้อมูลกระจายอยู่ราว 25 ชีต และต้องออกใบแจ้งหนี้ทีละใบ`,
+      built: `จัดโครงสร้างข้อมูลใหม่ สร้าง PDF และส่งทาง Gmail อัตโนมัติ เลขที่ใบแจ้งหนี้กันซ้ำด้วย LockService ออกเป็นชุดผ่าน sidebar ติดตามการผ่อนเป็นงวด แนบใบที่ยกเลิก (VOID) ได้ และส่งอีเมลเตือนทีมก่อนครบกำหนดชำระ`,
+      result: `รวมจาก 25 ชีตเหลือ 7 ชีต ย้ายใบแจ้งหนี้เก่า 658 ใบเข้าระบบเดียว และรองรับตั้งแต่ออกจดหมายตอบรับจนถึงลงทะเบียน`,
+      tools: [`Google Apps Script`, `Google Sheets`, `Gmail`, `Google Drive`] },
+    { span: 6, title: `ส่งอีเมลจำนวนมาก แต่ละคนได้เนื้อหาที่ตรงกับตัวเอง`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `จดหมายตอบรับ ประกาศตารางเรียน และประกาศผลการเรียน ต้องส่งถึงคนจำนวนมาก และแต่ละคนต้องได้แม่แบบ รูป และลิงก์ที่ตรงกับสาขาและสถานะของตัวเอง`,
+      built: `ชุดสคริปต์ส่งอีเมลจากชีต เลือกแม่แบบ HTML ตามเงื่อนไข (มี/ไม่มีเงื่อนไข มี/ไม่มีทุน) เลือกรูปตารางเรียนและลิงก์ดาวน์โหลดตามสาขาและชั้นปี ส่งทดสอบก่อนส่งจริง CC เอเจนต์รายแถว และบันทึกสถานะ Sent / Waiting กันส่งซ้ำ`,
+      result: `ใช้ส่งจดหมายตอบรับ ประกาศตารางเรียน และประกาศผลการเรียนทุกภาคการศึกษา`,
+      tools: [`Apps Script`, `Gmail`, `HtmlService`, `MJML`] },
+    { span: 4, title: `ดึงข้อมูลจากฟอร์มและอีเมลเข้า Google Sheets`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `ข้อมูลผู้สมัครจากฟอร์มใน HubSpot และอีเมลก่อนลงทะเบียน ต้องคัดลอกมาลงตารางเอง`,
+      built: `เชื่อม HubSpot เข้า Google Sheets ผ่าน webhook และดึงข้อมูลจากอีเมลก่อนลงทะเบียนด้วย regex มาเป็นตาราง 12 คอลัมน์`,
+      result: `ข้อมูลผู้สมัครเข้าตารางเอง และใช้ต่อในการคำนวณค่าเล่าเรียน ทุน และค่าธรรมเนียม`,
+      tools: [`Apps Script`, `HubSpot`, `Gmail`, `Google Sheets`] },
+    { span: 4, title: `Dashboard ติดตามเคสและมอบหมายงานในทีม`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `เคสนักศึกษาหลายประเภท ตั้งแต่ถอนรายวิชา ย้ายสาขา การชำระเงิน ไปจนถึงขอเอกสาร ต้องแบ่งกันดูแลหลายคน`,
+      built: `Dashboard แยกงานตามผู้รับผิดชอบ กรองตามคน รายการนักศึกษาพร้อมลำดับความสำคัญและสถานะ กดดูรายละเอียดเคสได้ และหน้า Task Management นับงาน Pending / In Progress / Completed / Cancelled พร้อมวันเริ่มและวันครบกำหนด`,
+      result: `ทีมเห็นในหน้าเดียวว่าเคสไหนอยู่กับใคร ถึงขั้นไหน และใกล้ครบกำหนด`,
+      tools: [`Google Sheets`, `Apps Script`] },
+    { span: 4, title: `รายการงานและปฏิทิน แจ้งเตือนผ่าน LINE`, status: `ใช้งานจริง`, kind: `ok`,
+      problem: `งานที่มีกำหนดส่งต้องคอยเปิดตารางเช็คเอง`,
+      built: `รายการงานและปฏิทินบน Google Sheets ที่ส่งแจ้งเตือนเข้า LINE เป็นการ์ดข้อความ (Flex Message)`,
+      result: `ได้แจ้งเตือนงานใน LINE โดยไม่ต้องเปิดตาราง`,
+      tools: [`Apps Script`, `Google Sheets`, `LINE Messaging API`] }
+  ],
+  en: [
+    { span: 12, gallery: true, title: `MUTIC Invoice Studio — invoicing web app`, status: `In production`, kind: `ok`,
+      problem: `Took the Google Sheets invoice system further as a web app: I issue the invoices, and the team has view-only access.`,
+      built: `A finance dashboard (billed, collected, outstanding, overdue) with AR aging from 1–30 to 90+ days · invoices drafted from a one-sentence command that fills in the form, then printed to PDF or turned into an email draft · a student registry with CSV import, payment recording, slip uploads and reconciliation against the bank statement · sign-in limited to @mut.ac.th accounts`,
+      result: `In use today for issuing and tracking the college’s invoices.`,
+      tools: [`Next.js`, `Supabase`, `Vercel`, `NextAuth`] },
+    { span: 6, invoice: true, title: `Invoice automation on Google Sheets`, status: `In production`, kind: `ok`,
+      problem: `Data was spread across about 25 sheets, and every invoice was issued by hand, one at a time.`,
+      built: `A restructured data model, automatic PDF generation and Gmail delivery, LockService-guarded invoice numbering, batch issuing from a sidebar, installment tracking, VOID-invoice attachments, and email reminders to the team before payments fall due.`,
+      result: `Consolidated 25 sheets into 7, migrated 658 legacy invoices into one system, and covers the student journey from offer letter to enrollment.`,
+      tools: [`Google Apps Script`, `Google Sheets`, `Gmail`, `Google Drive`] },
+    { span: 6, title: `Conditional bulk mailers`, status: `In production`, kind: `ok`,
+      problem: `Offer letters, timetable announcements and grade notices go to many recipients, and each person needs the template, images and links for their own program and status.`,
+      built: `A set of sheet-driven mailers: HTML templates picked by condition (conditional/unconditional, with/without scholarship), timetable images and download links chosen by program and year, test sends before the real run, per-row agent CCs, and Sent / Waiting statuses that prevent duplicate sends.`,
+      result: `Used every semester for offer letters, timetable announcements and grade notices.`,
+      tools: [`Apps Script`, `Gmail`, `HtmlService`, `MJML`] },
+    { span: 4, title: `Form & email data pipeline into Sheets`, status: `In production`, kind: `ok`,
+      problem: `Applicant data from HubSpot forms and pre-enrollment emails had to be copied into spreadsheets by hand.`,
+      built: `A HubSpot-to-Sheets webhook sync, plus regex-based extraction of pre-enrollment emails into a 12-column sheet.`,
+      result: `Applicant data lands in the sheet on its own and feeds the tuition, scholarship and fee calculations.`,
+      tools: [`Apps Script`, `HubSpot`, `Gmail`, `Google Sheets`] },
+    { span: 4, title: `Case log & task assignment dashboard`, status: `In production`, kind: `ok`,
+      problem: `Many kinds of student cases — withdrawals, transfers, payments, document requests — shared across several staff.`,
+      built: `A dashboard of work by owner with a person filter, a student list with priority and status that opens full case details, and a Task Management page counting Pending / In Progress / Completed / Cancelled with start and due dates.`,
+      result: `The team sees on one page who holds each case, where it stands, and what is due soon.`,
+      tools: [`Google Sheets`, `Apps Script`] },
+    { span: 4, title: `Task list & calendar with LINE alerts`, status: `In production`, kind: `ok`,
+      problem: `Tasks with deadlines meant opening the sheet to check them.`,
+      built: `A Google Sheets task list and calendar that pushes reminders to LINE as Flex Message cards.`,
+      result: `Task reminders arrive in LINE without opening the sheet.`,
+      tools: [`Apps Script`, `Google Sheets`, `LINE Messaging API`] }
+  ]
+};
+
+var SKILLS = {
+  th: [
+    { name: `เว็บไซต์และอีเมล`, items: [`WordPress`, `Yoast SEO`, `HTML / CSS`, `MJML`] },
+    { name: `ระบบอัตโนมัติและข้อมูล`, items: [`Google Apps Script`, `Google Sheets`, `Gmail`, `LINE Messaging API`, `HubSpot`] },
+    { name: `เว็บแอป`, items: [`Next.js`, `Supabase`, `PostgreSQL`, `Vercel`, `NextAuth`, `JavaScript`] }
+  ],
+  en: [
+    { name: `Web & email`, items: [`WordPress`, `Yoast SEO`, `HTML / CSS`, `MJML`] },
+    { name: `Automation & data`, items: [`Google Apps Script`, `Google Sheets`, `Gmail`, `LINE Messaging API`, `HubSpot`] },
+    { name: `Web apps`, items: [`Next.js`, `Supabase`, `PostgreSQL`, `Vercel`, `NextAuth`, `JavaScript`] }
+  ]
+};
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var st = this.state || {};
+    var lang = st.lang || this.props.lang || 'th';
+    if (lang !== 'en') lang = 'th';
+    var t = COPY[lang];
+    var projects = PROJECTS[lang].map(function (p, i) {
+      var n = i + 1;
+      return {
+        span: p.span,
+        isInvoice: !!p.invoice,
+        num: n < 10 ? '0' + n : String(n),
+        title: p.title,
+        status: p.status,
+        statusTodo: p.kind === 'todo',
+        statusOk: p.kind !== 'todo',
+        statusColor: p.kind === 'wip' ? '#78350F' : '#1E40AF',
+        statusBg: p.kind === 'wip' ? '#FEF3C7' : '#DBEAFE',
+        problem: p.problem || '',
+        hasProblem: !!p.problem,
+        noProblem: !p.problem,
+        built: p.built,
+        builtTodo: p.builtTodo || '',
+        hasBuiltTodo: !!p.builtTodo,
+        result: p.result || '',
+        hasResult: !!p.result,
+        resultTodo: p.resultTodo || (p.result ? '' : t.todo),
+        hasResultTodo: !!(p.resultTodo || !p.result),
+        hasGallery: !!p.gallery,
+        gallery: p.gallery ? GALLERY[lang] : [],
+        tools: p.tools
+      };
+    });
+    return {
+      lang: lang,
+      isTh: lang === 'th',
+      isEn: lang === 'en',
+      t: t,
+      pages: PAGES[lang],
+      projects: projects,
+      skills: SKILLS[lang],
+      accent: this.props.accent ?? '#2563EB',
+      setTh: function () { self.setState({ lang: 'th' }); },
+      setEn: function () { self.setState({ lang: 'en' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
